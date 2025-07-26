@@ -1,0 +1,513 @@
+/* Renovation Mode Styles */
+#renovation-mode {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.renovation-header {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.95);
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.renovation-header h2 {
+    font-size: 1.8rem;
+    color: #667eea;
+    font-weight: bold;
+}
+
+.room-progress {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stars {
+    display: flex;
+    gap: 0.2rem;
+}
+
+.stars .star {
+    font-size: 1.5rem;
+    color: #ffd700;
+    transition: all 0.3s ease;
+}
+
+.stars .star.empty {
+    color: #e9ecef;
+}
+
+.stars .star:hover {
+    transform: scale(1.2);
+}
+
+.renovation-container {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    height: calc(100vh - 200px);
+}
+
+.room-view {
+    flex: 2;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.room-bg {
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect width="800" height="600" fill="%23f8f9fa"/><rect x="0" y="500" width="800" height="100" fill="%23e9ecef"/><rect x="0" y="0" width="800" height="50" fill="%23dee2e6"/></svg>');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.furniture-item {
+    position: absolute;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    border-radius: 8px;
+}
+
+.furniture-item:hover {
+    transform: scale(1.05);
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.furniture-item.selected {
+    border-color: #ff6b6b;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+.furniture-item.placing {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.furniture-panel {
+    flex: 1;
+    background: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.panel-tabs {
+    display: flex;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.tab {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    background: transparent;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tab.active {
+    background: white;
+    color: #667eea;
+    border-bottom: 3px solid #667eea;
+}
+
+.tab:hover:not(.active) {
+    background: #e9ecef;
+    color: #333;
+}
+
+.furniture-grid {
+    flex: 1;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+    overflow-y: auto;
+    max-height: calc(100vh - 300px);
+}
+
+.furniture-card {
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.furniture-card:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.furniture-card.owned {
+    border-color: #4ecdc4;
+    background: linear-gradient(135deg, #4ecdc4, #44a08d);
+    color: white;
+}
+
+.furniture-card.premium {
+    border-color: #ffd700;
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #333;
+}
+
+.furniture-card.locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.furniture-card.locked:hover {
+    transform: none;
+    border-color: #e9ecef;
+}
+
+.furniture-image {
+    width: 60px;
+    height: 60px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin: 0 auto 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    border: 1px solid #e9ecef;
+}
+
+.furniture-card.owned .furniture-image {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.3);
+}
+
+.furniture-name {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+}
+
+.furniture-price {
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.furniture-price .currency {
+    font-size: 1rem;
+}
+
+.furniture-card.owned .furniture-price {
+    color: rgba(255,255,255,0.9);
+}
+
+.purchase-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: translateY(100%);
+}
+
+.furniture-card:hover .purchase-btn {
+    transform: translateY(0);
+}
+
+.purchase-btn:hover {
+    background: #5a67d8;
+}
+
+.purchase-btn.premium {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+}
+
+.purchase-btn.premium:hover {
+    background: linear-gradient(45deg, #ee5a24, #d63031);
+}
+
+/* Shop Screen */
+#shop-screen {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.shop-header {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.95);
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.shop-header h2 {
+    font-size: 1.8rem;
+    color: #667eea;
+    font-weight: bold;
+}
+
+.currency-display {
+    display: flex;
+    gap: 1rem;
+}
+
+.currency {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: #f8f9fa;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.shop-content {
+    width: 100%;
+    max-width: 800px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.shop-tabs {
+    display: flex;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.shop-tab {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.shop-tab.active {
+    background: white;
+    color: #667eea;
+    border-bottom: 3px solid #667eea;
+}
+
+.shop-tab:hover:not(.active) {
+    background: #e9ecef;
+    color: #333;
+}
+
+.shop-grid {
+    flex: 1;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    overflow-y: auto;
+}
+
+.shop-item {
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.shop-item:hover {
+    border-color: #667eea;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+}
+
+.shop-item.premium {
+    border-color: #ffd700;
+    background: linear-gradient(135deg, #fff9e6, #fff3cd);
+}
+
+.shop-item.best-value {
+    border-color: #ff6b6b;
+    background: linear-gradient(135deg, #ffe6e6, #ffcccc);
+}
+
+.shop-item.best-value::before {
+    content: "BEST VALUE";
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    background: #ff6b6b;
+    color: white;
+    padding: 0.3rem 2rem;
+    font-size: 0.7rem;
+    font-weight: bold;
+    transform: rotate(45deg);
+    letter-spacing: 0.5px;
+}
+
+.shop-item-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.shop-item-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.shop-item-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.shop-item-price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.shop-buy-btn {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.shop-buy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+}
+
+.shop-buy-btn:active {
+    transform: translateY(0);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .renovation-container {
+        flex-direction: column;
+        height: auto;
+        gap: 1rem;
+    }
+    
+    .room-view {
+        height: 300px;
+    }
+    
+    .furniture-panel {
+        height: 400px;
+    }
+    
+    .furniture-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 0.8rem;
+        max-height: 300px;
+    }
+    
+    .furniture-card {
+        padding: 0.8rem;
+    }
+    
+    .furniture-image {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .shop-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .renovation-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .furniture-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
+    
+    .furniture-image {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .furniture-name {
+        font-size: 0.7rem;
+    }
+    
+    .furniture-price {
+        font-size: 0.8rem;
+    }
+}

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Sweet Puzzle - Match-3 Renovation Game</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/puzzle.css">
+    <link rel="stylesheet" href="css/renovation.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="screen active">
+        <div class="loading-content">
+            <h1>Home Sweet Puzzle</h1>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p>Loading your dream home...</p>
+        </div>
+    </div>
+
+    <!-- Main Menu -->
+    <div id="main-menu" class="screen">
+        <div class="menu-content">
+            <h1>Home Sweet Puzzle</h1>
+            <div class="menu-buttons">
+                <button id="play-btn" class="menu-btn primary">Play</button>
+                <button id="renovation-btn" class="menu-btn">My Home</button>
+                <button id="shop-btn" class="menu-btn">Shop</button>
+                <button id="settings-btn" class="menu-btn">Settings</button>
+            </div>
+            <div class="player-stats">
+                <div class="stat">
+                    <span class="icon">💰</span>
+                    <span id="coins-display">1000</span>
+                </div>
+                <div class="stat">
+                    <span class="icon">⭐</span>
+                    <span id="stars-display">5</span>
+                </div>
+                <div class="stat">
+                    <span class="icon">❤️</span>
+                    <span id="lives-display">5</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Level Selection -->
+    <div id="level-select" class="screen">
+        <div class="level-header">
+            <button id="back-to-menu" class="back-btn">← Back</button>
+            <h2>Choose Level</h2>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+        <div id="level-grid" class="level-grid">
+            <!-- Levels will be dynamically generated -->
+        </div>
+    </div>
+
+    <!-- Puzzle Game -->
+    <div id="puzzle-game" class="screen">
+        <div class="game-header">
+            <button id="pause-btn" class="header-btn">⏸️</button>
+            <div class="level-info">
+                <span id="level-number">Level 1</span>
+                <div class="objectives">
+                    <div class="objective">
+                        <span class="icon">🔴</span>
+                        <span id="red-target">10</span>
+                    </div>
+                    <div class="objective">
+                        <span class="icon">🔵</span>
+                        <span id="blue-target">10</span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-stats">
+                <div class="stat">
+                    <span>Moves</span>
+                    <span id="moves-left">25</span>
+                </div>
+                <div class="stat">
+                    <span>Score</span>
+                    <span id="current-score">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-container">
+            <canvas id="puzzle-canvas" width="400" height="400"></canvas>
+            <div class="power-ups">
+                <button class="power-up" data-type="hammer">🔨</button>
+                <button class="power-up" data-type="bomb">💣</button>
+                <button class="power-up" data-type="shuffle">🔄</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Renovation Mode -->
+    <div id="renovation-mode" class="screen">
+        <div class="renovation-header">
+            <button id="back-to-game" class="back-btn">← Back</button>
+            <h2 id="room-name">Kitchen</h2>
+            <div class="room-progress">
+                <div class="stars">
+                    <span class="star">⭐</span>
+                    <span class="star">⭐</span>
+                    <span class="star empty">⭐</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="renovation-container">
+            <div class="room-view">
+                <div id="room-background" class="room-bg">
+                    <!-- Room items will be placed here -->
+                </div>
+            </div>
+            
+            <div class="furniture-panel">
+                <div class="panel-tabs">
+                    <button class="tab active" data-category="essential">Essential</button>
+                    <button class="tab" data-category="decorative">Decorative</button>
+                    <button class="tab" data-category="premium">Premium</button>
+                </div>
+                <div id="furniture-grid" class="furniture-grid">
+                    <!-- Furniture items will be dynamically loaded -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shop -->
+    <div id="shop-screen" class="screen">
+        <div class="shop-header">
+            <button id="back-from-shop" class="back-btn">← Back</button>
+            <h2>Shop</h2>
+            <div class="currency-display">
+                <span class="currency">💰 <span id="shop-coins">1000</span></span>
+                <span class="currency">⭐ <span id="shop-stars">5</span></span>
+            </div>
+        </div>
+        
+        <div class="shop-content">
+            <div class="shop-tabs">
+                <button class="shop-tab active" data-category="boosters">Boosters</button>
+                <button class="shop-tab" data-category="currency">Currency</button>
+                <button class="shop-tab" data-category="premium">Premium</button>
+            </div>
+            <div id="shop-items" class="shop-grid">
+                <!-- Shop items will be dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="level-complete-modal" class="modal">
+        <div class="modal-content">
+            <h3>Level Complete!</h3>
+            <div class="stars-earned">
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+            </div>
+            <div class="rewards">
+                <div class="reward">
+                    <span class="icon">💰</span>
+                    <span id="coins-earned">150</span>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button id="continue-btn" class="btn primary">Continue</button>
+                <button id="replay-btn" class="btn secondary">Replay</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-over-modal" class="modal">
+        <div class="modal-content">
+            <h3>Game Over</h3>
+            <p>You ran out of moves!</p>
+            <div class="modal-buttons">
+                <button id="buy-moves-btn" class="btn primary">Buy 5 Moves (100💰)</button>
+                <button id="watch-ad-btn" class="btn secondary">Watch Ad for Moves</button>
+                <button id="retry-btn" class="btn">Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Story Dialog -->
+    <div id="story-dialog" class="modal">
+        <div class="dialog-content">
+            <div class="character-portrait">
+                <img id="character-image" src="" alt="Character">
+            </div>
+            <div class="dialog-text">
+                <h4 id="character-name">Emma</h4>
+                <p id="dialog-message">Welcome to your new home! Let's start by renovating the kitchen.</p>
+            </div>
+            <button id="dialog-continue" class="btn primary">Continue</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/core/Game.js"></script>
+    <script src="js/core/StateManager.js"></script>
+    <script src="js/core/SaveSystem.js"></script>
+    <script src="js/puzzle/PuzzleEngine.js"></script>
+    <script src="js/puzzle/Board.js"></script>
+    <script src="js/puzzle/Tile.js"></script>
+    <script src="js/puzzle/PowerUps.js"></script>
+    <script src="js/renovation/RenovationManager.js"></script>
+    <script src="js/renovation/Room.js"></script>
+    <script src="js/renovation/Furniture.js"></script>
+    <script src="js/renovation/Inventory.js"></script>
+    <script src="js/economy/Currency.js"></script>
+    <script src="js/economy/Shop.js"></script>
+    <script src="js/economy/Rewards.js"></script>
+    <script src="js/story/StoryManager.js"></script>
+    <script src="js/story/DialogSystem.js"></script>
+    <script src="js/ui/UIManager.js"></script>
+    <script src="js/ui/MenuSystem.js"></script>
+    <script src="js/ui/Notifications.js"></script>
+    
+    <script>
+        // Initialize game when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            const game = new Game();
+            game.init();
+        });
+    </script>
+</body>
+</html>
