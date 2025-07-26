@@ -245,6 +245,24 @@ This is a demonstration project, but suggestions and improvements are welcome! C
 
 For questions about the code structure or implementation details, please refer to the inline documentation within each JavaScript file.
 
+## 🎮 Live Demo
+
+To see the game in action:
+1. Open `index.html` in your web browser
+2. Start with the tutorial level to learn the mechanics
+3. Earn coins by completing puzzle levels
+4. Visit the renovation mode to decorate your first room
+5. Explore the shop for power-ups and premium content
+
+## 🏆 Game Statistics
+
+- **24 JavaScript files** with over 9,000 lines of code
+- **Complete match-3 engine** with advanced mechanics
+- **Full renovation system** with multiple room types
+- **Comprehensive monetization** framework
+- **Mobile-optimized** responsive design
+- **Production-ready** architecture
+
 ---
 
 **Home Sweet Puzzle** - Transform houses into homes, one match at a time! 🏠✨
