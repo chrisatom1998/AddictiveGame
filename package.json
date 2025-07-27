@@ -1,0 +1,42 @@
+{
+  "name": "addictive-game",
+  "version": "1.0.0",
+  "description": "Home Sweet Puzzle - Match-3 Renovation Game",
+  "main": "app/src/main/assets/js/core/Game.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage --watchAll=false"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "collectCoverageFrom": [
+      "app/src/main/assets/js/**/*.js",
+      "!app/src/main/assets/js/**/*.test.js",
+      "!app/src/main/assets/js/**/*.spec.js"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js",
+      "**/tests/**/*.spec.js",
+      "**/*.test.js",
+      "**/*.spec.js"
+    ],
+    "setupFilesAfterEnv": ["<rootDir>/tests/setup.js"]
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "@jest/globals": "^29.7.0"
+  },
+  "keywords": [
+    "game",
+    "match-3",
+    "puzzle",
+    "renovation",
+    "mobile",
+    "javascript"
+  ],
+  "author": "AddictiveGame Team",
+  "license": "MIT"
+}
