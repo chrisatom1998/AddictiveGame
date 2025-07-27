@@ -1,0 +1,87 @@
+name: Test Game Logic
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-javascript:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run tests
+      run: npm run test:ci
+    
+    - name: Generate coverage report
+      run: npm run test:coverage
+    
+    - name: Upload coverage to CodeCov (optional)
+      # uses: codecov/codecov-action@v3
+      # with:
+      #   file: ./coverage/lcov.info
+      #   flags: javascript
+      #   name: game-logic-coverage
+      run: echo "Coverage report generated"
+
+  lint-and-format:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Check for JavaScript syntax errors
+      run: |
+        # Basic syntax check for JavaScript files
+        find app/src/main/assets/js -name "*.js" -exec node -c {} \;
+    
+    - name: Verify test files
+      run: |
+        # Ensure all test files are properly formatted
+        find tests -name "*.js" -exec node -c {} \;
+
+  test-results:
+    runs-on: ubuntu-latest
+    needs: [test-javascript, lint-and-format]
+    if: always()
+    
+    steps:
+    - name: Test Results Summary
+      run: |
+        echo "JavaScript Tests: ${{ needs.test-javascript.result }}"
+        echo "Lint and Format: ${{ needs.lint-and-format.result }}"
+        
+        if [ "${{ needs.test-javascript.result }}" == "success" ] && [ "${{ needs.lint-and-format.result }}" == "success" ]; then
+          echo "✅ All tests passed!"
+          exit 0
+        else
+          echo "❌ Some tests failed"
+          exit 1
+        fi
