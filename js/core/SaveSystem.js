@@ -9,6 +9,7 @@ class SaveSystem {
         this.settingsKey = 'homeSweetPuzzle_settings';
         this.achievementsKey = 'homeSweetPuzzle_achievements';
         this.version = '1.0.0';
+        this.networkDelay = 500; // ms
         
         // Auto-save interval (5 minutes)
         this.autoSaveInterval = 5 * 60 * 1000;
@@ -21,59 +22,67 @@ class SaveSystem {
      * Save player data to localStorage
      */
     async save(playerData) {
-        try {
-            const saveData = {
-                version: this.version,
-                timestamp: Date.now(),
-                playerData: this.sanitizePlayerData(playerData),
-                gameState: this.game.stateManager ? this.game.stateManager.getStateData() : null
-            };
-            
-            // Compress and save
-            const compressedData = this.compressData(saveData);
-            localStorage.setItem(this.saveKey, compressedData);
-            
-            this.lastSaveTime = Date.now();
-            console.log('Game saved successfully');
-            
-            // Show save confirmation
-            this.showSaveConfirmation();
-            
-            return true;
-        } catch (error) {
-            console.error('Failed to save game:', error);
-            this.showSaveError();
-            return false;
-        }
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                try {
+                    const saveData = {
+                        version: this.version,
+                        timestamp: Date.now(),
+                        playerData: this.sanitizePlayerData(playerData),
+                        gameState: this.game.stateManager ? this.game.stateManager.getStateData() : null
+                    };
+
+                    // Compress and save
+                    const compressedData = this.compressData(saveData);
+                    localStorage.setItem(this.saveKey, compressedData);
+
+                    this.lastSaveTime = Date.now();
+                    console.log('Game saved successfully');
+
+                    // Show save confirmation
+                    this.showSaveConfirmation();
+
+                    resolve(true);
+                } catch (error) {
+                    console.error('Failed to save game:', error);
+                    this.showSaveError();
+                    reject(false);
+                }
+            }, this.networkDelay);
+        });
     }
     
     /**
      * Load player data from localStorage
      */
     async load() {
-        try {
-            const savedData = localStorage.getItem(this.saveKey);
-            if (!savedData) {
-                console.log('No save data found');
-                return null;
-            }
-            
-            const decompressedData = this.decompressData(savedData);
-            
-            // Version check
-            if (decompressedData.version !== this.version) {
-                console.warn('Save version mismatch, attempting migration');
-                return this.migrateSaveData(decompressedData);
-            }
-            
-            console.log('Game loaded successfully');
-            return decompressedData.playerData;
-            
-        } catch (error) {
-            console.error('Failed to load game:', error);
-            this.showLoadError();
-            return null;
-        }
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                try {
+                    const savedData = localStorage.getItem(this.saveKey);
+                    if (!savedData) {
+                        console.log('No save data found');
+                        resolve(null);
+                    }
+
+                    const decompressedData = this.decompressData(savedData);
+
+                    // Version check
+                    if (decompressedData.version !== this.version) {
+                        console.warn('Save version mismatch, attempting migration');
+                        resolve(this.migrateSaveData(decompressedData));
+                    }
+
+                    console.log('Game loaded successfully');
+                    resolve(decompressedData.playerData);
+
+                } catch (error) {
+                    console.error('Failed to load game:', error);
+                    this.showLoadError();
+                    reject(null);
+                }
+            }, this.networkDelay);
+        });
     }
     
     /**
