@@ -14,6 +14,60 @@ A comprehensive match-3 puzzle game with home renovation mechanics, featuring pr
 - **Currency Economy**: Coins and stars with balanced earning/spending mechanics
 - **Monetization Integration**: In-app purchases, ads, and season pass system
 
+## 🖼️ Gameplay Screenshots
+
+Experience the visual richness and engaging gameplay mechanics of Home Sweet Puzzle through our comprehensive screenshot gallery.
+
+### 🧩 Match-3 Puzzle Gameplay
+Get a feel for the core puzzle mechanics that drive the game experience.
+
+![Match-3 Gameplay Board](images/screenshots/match3-gameplay/gameplay-board-1.png)
+*Colorful match-3 puzzle board with various tile types and objectives*
+
+![Power-ups in Action](images/screenshots/match3-gameplay/powerup-bomb-action.png)
+*Special power-ups creating explosive chain reactions*
+
+![Combo Effects](images/screenshots/match3-gameplay/combo-cascade.png)
+*Satisfying cascade effects from strategic tile matches*
+
+### 🏠 Home Renovation Interface
+See how puzzle success translates into beautiful home transformations.
+
+![Room Before Renovation](images/screenshots/renovation-interface/room-kitchen-before.png)
+*A room waiting to be transformed with your design choices*
+
+![Furniture Selection](images/screenshots/renovation-interface/furniture-selection.png)
+*Browse and select from hundreds of furniture items across different categories*
+
+![Room After Renovation](images/screenshots/renovation-interface/room-kitchen-after.png)
+*The same room completely transformed into a beautiful living space*
+
+### 💬 Character Dialog System
+Discover the rich storyline that unfolds as you progress through the game.
+
+![Character Introduction](images/screenshots/character-dialog/character-maya-dialog.png)
+*Meet Maya, your renovation mentor, who guides you through your first projects*
+
+![Story Progression](images/screenshots/character-dialog/story-intro.png)
+*Engaging narrative that provides context and motivation for each renovation project*
+
+![Dialog Choices](images/screenshots/character-dialog/dialog-choices.png)
+*Make meaningful choices that affect your relationships and story outcomes*
+
+### 🛒 Shop & Monetization Features
+Explore the various ways to enhance your gameplay experience.
+
+![Currency Display](images/screenshots/shop-monetization/currency-display.png)
+*Track your coins, stars, and lives with the intuitive currency interface*
+
+![Power-up Shop](images/screenshots/shop-monetization/shop-boosters.png)
+*Purchase helpful boosters and power-ups to tackle challenging levels*
+
+![Season Pass](images/screenshots/shop-monetization/season-pass.png)
+*Unlock exclusive content and rewards with the premium season pass*
+
+> **Note**: Screenshots show placeholder content. Actual gameplay may vary as features are continuously updated and improved.
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -247,12 +301,23 @@ For questions about the code structure or implementation details, please refer t
 
 ## 🎮 Live Demo
 
-To see the game in action:
-1. Open `index.html` in your web browser
-2. Start with the tutorial level to learn the mechanics
-3. Earn coins by completing puzzle levels
-4. Visit the renovation mode to decorate your first room
-5. Explore the shop for power-ups and premium content
+Ready to experience Home Sweet Puzzle? Here's how to get started:
+
+### 🖼️ Preview the Game
+Before diving in, check out our [Gameplay Screenshots](#-gameplay-screenshots) section above to see:
+- **Match-3 puzzles** with colorful tiles and power-ups
+- **Renovation interface** showing before/after transformations  
+- **Character interactions** that drive the engaging storyline
+- **Shop features** for boosters and premium content
+
+### 🚀 Try It Yourself
+1. **Launch the game**: Open `index.html` in your web browser
+2. **Learn the basics**: Start with the tutorial level to master the mechanics
+3. **Earn currency**: Complete puzzle levels to collect coins and stars
+4. **Transform rooms**: Use your earnings in renovation mode to decorate spaces
+5. **Enhance gameplay**: Visit the shop for helpful power-ups and premium content
+
+*The screenshots above show exactly what you'll experience during each step of this journey!*
 
 ## 🏆 Game Statistics
 
