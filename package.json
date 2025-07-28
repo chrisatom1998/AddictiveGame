@@ -1,0 +1,101 @@
+{
+  "name": "home-sweet-puzzle",
+  "version": "1.0.0",
+  "description": "Match-3 puzzle game with home renovation mechanics",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "test": "node tests/run-tests.js",
+    "test:unit": "echo 'Running unit tests...' && open http://localhost:8000/tests/test-runner.html",
+    "test:manual": "echo 'Starting test server...' && python3 -m http.server 8000",
+    "build": "echo 'No build step required for vanilla JS game'",
+    "lint": "echo 'Linting JavaScript files...'",
+    "serve": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "game",
+    "match-3",
+    "puzzle",
+    "renovation",
+    "mobile",
+    "html5",
+    "javascript",
+    "canvas"
+  ],
+  "author": "Home Sweet Puzzle Team",
+  "license": "MIT",
+  "devDependencies": {
+    "playwright": "^1.40.0"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "python": ">=3.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisatom1998/AddictiveGame.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chrisatom1998/AddictiveGame/issues"
+  },
+  "homepage": "https://github.com/chrisatom1998/AddictiveGame#readme",
+  "directories": {
+    "test": "tests"
+  },
+  "files": [
+    "index.html",
+    "css/",
+    "js/",
+    "assets/",
+    "tests/",
+    "README.md"
+  ],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "gameConfig": {
+    "title": "Home Sweet Puzzle",
+    "version": "1.0.0",
+    "platform": "web",
+    "targetDevices": ["mobile", "tablet", "desktop"],
+    "features": [
+      "match-3-puzzle",
+      "home-renovation",
+      "story-progression",
+      "in-app-purchases",
+      "analytics",
+      "performance-monitoring"
+    ],
+    "monetization": {
+      "model": "freemium",
+      "currencies": ["coins", "stars"],
+      "iap": true,
+      "ads": true,
+      "seasonPass": true
+    },
+    "technical": {
+      "framework": "vanilla-js",
+      "rendering": "canvas-2d",
+      "storage": "localStorage",
+      "analytics": "custom",
+      "testing": "custom-framework"
+    }
+  },
+  "testConfig": {
+    "framework": "custom",
+    "suites": ["unit", "integration", "e2e", "performance"],
+    "coverage": {
+      "target": 90,
+      "exclude": ["tests/", "assets/"]
+    },
+    "automation": {
+      "browser": "chromium",
+      "headless": true,
+      "timeout": 30000
+    }
+  }
+}
