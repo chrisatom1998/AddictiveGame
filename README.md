@@ -319,6 +319,66 @@ Before diving in, check out our [Gameplay Screenshots](#-gameplay-screenshots) s
 
 *The screenshots above show exactly what you'll experience during each step of this journey!*
 
+## 🐳 Docker Development Environment
+
+Experience seamless development with our containerized environment that serves the game's static assets via HTTP.
+
+### 🚀 Quick Start with Docker
+
+1. **Build and run the game server:**
+   ```bash
+   docker-compose up --build
+   ```
+
+2. **Access the game:**
+   - Production server: http://localhost:8080
+   - Development server (with live reload): http://localhost:8081
+
+3. **Stop the containers:**
+   ```bash
+   docker-compose down
+   ```
+
+### 🛠️ Docker Commands
+
+```bash
+# Build the Docker image
+docker build -t addictive-game .
+
+# Run production container
+docker-compose up game-server
+
+# Run development environment with live file watching
+docker-compose --profile dev up game-dev
+
+# View running containers
+docker-compose ps
+
+# View container logs
+docker-compose logs game-server
+
+# Remove containers and networks
+docker-compose down --remove-orphans
+```
+
+### 📋 Docker Environment Features
+
+- **🔒 Security**: Non-root user, minimal attack surface
+- **📦 Optimized**: Multi-stage build with .dockerignore
+- **🔄 Caching**: Efficient layer caching for faster builds  
+- **🩺 Health Checks**: Built-in container health monitoring
+- **🌐 CORS**: Cross-origin resource sharing enabled
+- **🔧 Development**: Optional dev mode with volume mounting
+
+### 📁 What Gets Served
+
+The Docker container serves all static game assets from `app/src/main/assets/`:
+- `index.html` - Main game entry point
+- `css/` - Stylesheets for game interface
+- `js/` - Complete JavaScript game engine
+
+*Perfect for Android development environments, testing, and deployment!*
+
 ## 🏆 Game Statistics
 
 - **24 JavaScript files** with over 9,000 lines of code
