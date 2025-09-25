@@ -60,15 +60,53 @@ See [TESTING.md](TESTING.md) for detailed testing documentation.
 
 ## Development Workflow
 
+### Repository Setup
+
+1. **Clone the repository** (or your fork):
+   ```bash
+   git clone https://github.com/chrisatom1998/AddictiveGame.git
+   cd AddictiveGame
+   ```
+
+2. **Setup remote repositories** (for contributors):
+   ```bash
+   ./scripts/setup-remotes.sh
+   ```
+
+3. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
 ### For Game Logic Development
 
-1. **Make changes** to JavaScript files in `app/src/main/assets/js/`
-2. **Run tests** to verify functionality:
+1. **Sync with upstream** (for contributors):
+   ```bash
+   ./scripts/sync-upstream.sh
+   ```
+
+2. **Create feature branch**:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+3. **Make changes** to JavaScript files in `app/src/main/assets/js/`
+
+4. **Run tests** to verify functionality:
    ```bash
    npm test
    ```
-3. **Add new tests** for new features
-4. **Build Android app** to test integration
+
+5. **Add new tests** for new features
+
+6. **Commit and push** changes:
+   ```bash
+   git add .
+   git commit -m "Add your feature description"
+   git push origin feature/your-feature-name
+   ```
+
+7. **Create Pull Request** on GitHub
 
 ### For Android Development
 
@@ -76,6 +114,11 @@ See [TESTING.md](TESTING.md) for detailed testing documentation.
 2. **Make changes** to Android components
 3. **Sync and build** the project
 4. **Test on device/emulator**
+
+### Working with Multiple Remotes
+
+- Use `./scripts/push-all.sh` to push to all configured remotes
+- See [GIT_WORKFLOW.md](GIT_WORKFLOW.md) for comprehensive Git workflow documentation
 
 ## Project Structure
 
@@ -123,3 +166,5 @@ AddictiveGame/
 
 For detailed game documentation, see [README.md](README.md).
 For comprehensive testing information, see [TESTING.md](TESTING.md).
+For Git workflow and remote repository management, see [GIT_WORKFLOW.md](GIT_WORKFLOW.md).
+For quick remote setup reference, see [REMOTE_SETUP_QUICK_REFERENCE.md](REMOTE_SETUP_QUICK_REFERENCE.md).

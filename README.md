@@ -77,9 +77,18 @@ Explore the various ways to enhance your gameplay experience.
 
 ### Installation
 
-1. Clone or download the project files
-2. Open `index.html` in a web browser, or
-3. Serve the files using a local web server:
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/chrisatom1998/AddictiveGame.git
+   cd AddictiveGame
+   ```
+
+2. **For contributors** - Set up remotes for development:
+   ```bash
+   ./scripts/setup-remotes.sh
+   ```
+
+3. **Open `index.html`** in a web browser, or serve the files using a local web server:
 
 ```bash
 # Using Python 3
@@ -93,6 +102,34 @@ php -S localhost:8000
 ```
 
 4. Navigate to `http://localhost:8000` in your browser
+
+## 🔄 Git Workflow & Remote Repositories
+
+This project supports comprehensive remote repository management for collaboration and deployment:
+
+### Quick Start for Contributors
+
+```bash
+# Fork the repository on GitHub, then:
+git clone https://github.com/YOUR_USERNAME/AddictiveGame.git
+cd AddictiveGame
+./scripts/setup-remotes.sh  # Sets up upstream remote automatically
+```
+
+### Available Scripts
+
+- **`./scripts/setup-remotes.sh`** - Interactive setup for upstream, production, and staging remotes
+- **`./scripts/sync-upstream.sh`** - Sync your fork with the upstream repository
+- **`./scripts/push-all.sh`** - Push to all configured remotes simultaneously
+
+### Comprehensive Documentation
+
+See **[GIT_WORKFLOW.md](GIT_WORKFLOW.md)** for detailed information about:
+- Fork workflow and contribution guidelines
+- Multi-remote setup for deployment environments
+- Branch management and synchronization strategies
+- Authentication setup (SSH keys, personal access tokens)
+- Troubleshooting common Git issues
 
 ## 🎯 Gameplay Loop
 
